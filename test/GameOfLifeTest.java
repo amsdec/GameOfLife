@@ -8,4 +8,9 @@ public class GameOfLifeTest {
     public void nothing(){
 
     }
+
+    @Test
+    public void canStartGame() {
+        GameOfLife game = new GameOfLife();
+    }
 }
