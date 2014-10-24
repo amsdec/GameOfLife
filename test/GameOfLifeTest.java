@@ -13,4 +13,10 @@ public class GameOfLifeTest {
     public void canStartGame() {
         GameOfLife game = new GameOfLife();
     }
+
+    @Test
+    public void canCalculateNextGeneration() {
+        GameOfLife game = new GameOfLife();
+        game.nextGeneration();
+    }
 }
