@@ -1,22 +1,19 @@
+import org.junit.Before;
 import org.junit.Test;
 
 /**
  * Created by alberto on 23/10/14.
  */
 public class GameOfLifeTest {
-    @Test
-    public void nothing(){
+    private GameOfLife game;
 
-    }
-
-    @Test
-    public void canStartGame() {
-        GameOfLife game = new GameOfLife();
+    @Before
+    public void setup() {
+        game = new GameOfLife();
     }
 
     @Test
     public void canCalculateNextGeneration() {
-        GameOfLife game = new GameOfLife();
         game.nextGeneration();
     }
 }
