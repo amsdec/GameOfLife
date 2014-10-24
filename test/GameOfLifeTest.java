@@ -16,4 +16,10 @@ public class GameOfLifeTest {
     public void canCalculateNextGeneration() {
         game.nextGeneration();
     }
+
+    @Test
+    public void canSendTheGridToTheGame(){
+        String[][] grid = new String[0][0];
+        game.nextGeneration(grid);
+    }
 }
