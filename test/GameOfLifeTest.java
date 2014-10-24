@@ -1,3 +1,5 @@
+import org.junit.Test;
+
 /**
  * Created by alberto on 23/10/14.
  */
