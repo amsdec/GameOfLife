@@ -5,4 +5,8 @@ public class GameOfLife {
     public void nextGeneration() {
 
     }
+
+    public void nextGeneration(String[][] grid) {
+
+    }
 }
