@@ -14,19 +14,10 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void nextGenerationAlwaysMustReturnAGridWithSameSize() {
-        String[][] originalGrid = new String[10][10];
-        String[][] nextGeneration = game.nextGeneration(originalGrid);
-        Assert.assertNotNull(nextGeneration);
-        Assert.assertArrayEquals(originalGrid, nextGeneration);
-    }
-
-    @Test
     public void nextGenerationOfOneLiveCellWithoutNeighborsMustDie() {
         String[][] originalGrid = new String[10][10];
         originalGrid[0][0] = "X";
         String[][] nextGeneration = game.nextGeneration(originalGrid);
-        Assert.assertNotNull(nextGeneration);
         Assert.assertArrayEquals(originalGrid, nextGeneration);
         for(String[] row: nextGeneration) {
             for(String column: row) {
