@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,5 +16,11 @@ public class GameOfLifeTest {
     @Test
     public void nextGenerationShouldReturnTheNewGrid() {
         String[][] nextGeneration = game.nextGeneration(new String[0][0]);
+    }
+
+    @Test
+    public void nextGenerationAllwaysMustRetunAGrid() {
+        String[][] nextGeneration = game.nextGeneration(new String[10][10]);
+        Assert.assertNotNull(nextGeneration);
     }
 }
