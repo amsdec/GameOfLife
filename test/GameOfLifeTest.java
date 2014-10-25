@@ -13,14 +13,7 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void canSendTheGridToTheGame(){
-        String[][] grid = new String[0][0];
-        game.nextGeneration(grid);
-    }
-
-    @Test
     public void nextGenerationShouldReturnTheNewGrid() {
-        String[][] grid = new String[0][0];
-        String[][] nextGeneration = game.nextGeneration(grid);
+        String[][] nextGeneration = game.nextGeneration(new String[0][0]);
     }
 }
