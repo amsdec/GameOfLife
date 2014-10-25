@@ -4,6 +4,6 @@
 public class GameOfLife {
 
     public String[][] nextGeneration(String[][] grid) {
-        return new String[0][0];
+        return grid;
     }
 }
