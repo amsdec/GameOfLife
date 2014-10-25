@@ -3,7 +3,7 @@
  */
 public class GameOfLife {
 
-    public void nextGeneration(String[][] grid) {
-
+    public String[][] nextGeneration(String[][] grid) {
+        return null;
     }
 }
