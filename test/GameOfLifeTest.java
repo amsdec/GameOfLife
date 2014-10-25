@@ -14,14 +14,10 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void nextGenerationAllwaysMustRetunAGrid() {
-        Assert.assertNotNull(game.nextGeneration(new String[10][10]));
-    }
-
-    @Test
     public void nextGenerationAlwaysMustReturnAGridWithSameSize() {
-        String[][] nextGeneration = game.nextGeneration(new String[10][10]);
+        String[][] originalGrid = new String[10][10];
+        String[][] nextGeneration = game.nextGeneration(originalGrid);
         Assert.assertNotNull(nextGeneration);
-        Assert.assertArrayEquals(new String[10][10], nextGeneration);
+        Assert.assertArrayEquals(originalGrid, nextGeneration);
     }
 }
