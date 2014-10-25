@@ -38,14 +38,11 @@ public class GameOfLifeTest {
             for(int column = 0; column < nextGeneration.length; column++) {
                 if(row == 0 && column == 0){
                     Assert.assertEquals("X",nextGeneration[row][column]);
-                }
-                if(row == 0 && column == 1){
+                } else if(row == 0 && column == 1){
                     Assert.assertEquals("X",nextGeneration[row][column]);
-                }
-                if(row == 1 && column == 1){
+                }else if(row == 1 && column == 1){
                     Assert.assertEquals("X",nextGeneration[row][column]);
-                }
-                Assert.assertNull(nextGeneration[row][column]);
+                }else Assert.assertNull(nextGeneration[row][column]);
             }
         }
     }

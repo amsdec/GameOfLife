@@ -7,8 +7,35 @@ public class GameOfLife {
         for (int row = 0; row < grid.length; row++){
             for(int column = 0; column < grid.length; column++) {
                 String cell = grid[row][column];
+                int liveNeighbors = 0;
                 if(isCellLive(cell)) {
-                    grid[row][column] = null;
+                    if(row -1 > -1  && column -1 > -1 && isCellLive(grid[row-1][column-1])){
+                        liveNeighbors++;
+                    }
+                    if(column -1 > -1 && isCellLive(grid[row][column-1])){
+                        liveNeighbors++;
+                    }
+                    if(row +1 < grid.length  && column -1 > -1 && isCellLive(grid[row+1][column-1])){
+                        liveNeighbors++;
+                    }
+                    if(row -1 > -1  && isCellLive(grid[row-1][column])){
+                        liveNeighbors++;
+                    }
+                    if(row +1 < grid.length && isCellLive(grid[row+1][column])){
+                        liveNeighbors++;
+                    }
+                    if(row -1 > -1  && column +1 < grid.length && isCellLive(grid[row-1][column+1])){
+                        liveNeighbors++;
+                    }
+                    if(column +1 < grid.length && isCellLive(grid[row][column+1])){
+                        liveNeighbors++;
+                    }
+                    if(row +1 < grid.length && column +1 < grid.length && isCellLive(grid[row+1][column+1])){
+                        liveNeighbors++;
+                    }
+                    if(liveNeighbors != 2) {
+                        grid[row][column] = null;
+                    }
                 }
             }
         }
