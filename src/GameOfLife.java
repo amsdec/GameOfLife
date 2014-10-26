@@ -21,7 +21,8 @@ public class GameOfLife {
     }
 
     private boolean cellShouldDie(String[][] grid, int row, int column) {
-        return getLiveNeighborsCountOfCell(grid, row, column) != 2;
+        int liveNeighborsCountOfCell = getLiveNeighborsCountOfCell(grid, row, column);
+        return liveNeighborsCountOfCell < 2 || liveNeighborsCountOfCell > 3;
     }
 
     private int getLiveNeighborsCountOfCell(String[][] grid, int row, int column) {
