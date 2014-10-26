@@ -10,6 +10,10 @@ public class GameOfLife {
                     if(cellShouldDie(grid, row, column)) {
                         killCell(grid, row, column);
                     }
+                } else {
+                    if(getLiveNeighborsCountOfCell(grid, row, column) == 3) {
+                        grid[row][column] = "X";
+                    }
                 }
             }
         }

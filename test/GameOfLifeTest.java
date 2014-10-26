@@ -42,7 +42,9 @@ public class GameOfLifeTest {
                     Assert.assertEquals("X",nextGeneration[row][column]);
                 }else if(row == 1 && column == 1){
                     Assert.assertEquals("X",nextGeneration[row][column]);
-                }else Assert.assertNull(nextGeneration[row][column]);
+                }else if(row == 1 && column == 0) {
+                    Assert.assertEquals("X",nextGeneration[row][column]);
+                } else Assert.assertNull("next generation of " + row + ", " + column + " must be dead", nextGeneration[row][column]);
             }
         }
     }
