@@ -11,8 +11,8 @@ public class GameOfLife {
                         killCell(grid, row, column);
                     }
                 } else {
-                    if(getLiveNeighborsCountOfCell(grid, row, column) == 3) {
-                        grid[row][column] = "X";
+                    if(cellShouldBecomeLive(grid, row, column)) {
+                        giveLiveToCell(grid, row, column);
                     }
                 }
             }
@@ -20,16 +20,24 @@ public class GameOfLife {
         return grid;
     }
 
+    private void giveLiveToCell(String[][] grid, int row, int column) {
+        grid[row][column] = "X";
+    }
+
+    private boolean cellShouldBecomeLive(String[][] grid, int row, int column) {
+        return howManyLiveNeighborsTheCellHas(grid, row, column) == 3;
+    }
+
     private void killCell(String[][] grid, int row, int column) {
         grid[row][column] = null;
     }
 
     private boolean cellShouldDie(String[][] grid, int row, int column) {
-        int liveNeighborsCountOfCell = getLiveNeighborsCountOfCell(grid, row, column);
+        int liveNeighborsCountOfCell = howManyLiveNeighborsTheCellHas(grid, row, column);
         return liveNeighborsCountOfCell < 2 || liveNeighborsCountOfCell > 3;
     }
 
-    private int getLiveNeighborsCountOfCell(String[][] grid, int row, int column) {
+    private int howManyLiveNeighborsTheCellHas(String[][] grid, int row, int column) {
         int liveNeighbors = 0;
         if(isThereAnUpperLeftNeighbor(row, column) && isUpperLeftNeighborLive(grid, row, column)){
             liveNeighbors++;

@@ -21,7 +21,7 @@ public class GameOfLifeTest {
         Assert.assertArrayEquals(originalGrid, nextGeneration);
         for (int row = 0; row < nextGeneration.length; row++){
             for(int column = 0; column < nextGeneration.length; column++) {
-                Assert.assertNull(nextGeneration[row][column]);
+                assertThatCellIsDead(nextGeneration, row, column);
             }
         }
     }
@@ -37,16 +37,20 @@ public class GameOfLifeTest {
         for (int row = 0; row < nextGeneration.length; row++){
             for(int column = 0; column < nextGeneration.length; column++) {
                 if(row == 0 && column == 0){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 } else if(row == 0 && column == 1){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 }else if(row == 1 && column == 1){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 }else if(row == 1 && column == 0) {
-                    Assert.assertEquals("X",nextGeneration[row][column]);
-                } else Assert.assertNull("next generation of " + row + ", " + column + " must be dead", nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
+                } else assertThatCellIsDead(nextGeneration, row, column);
             }
         }
+    }
+
+    private void assertThatCellIsDead(String[][] grid, int row, int column) {
+        Assert.assertNull("next generation of " + row + ", " + column + " must be dead", grid[row][column]);
     }
 
     @Test
@@ -61,14 +65,14 @@ public class GameOfLifeTest {
         for (int row = 0; row < nextGeneration.length; row++){
             for(int column = 0; column < nextGeneration.length; column++) {
                 if(row == 0 && column == 0){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 } else if(row == 0 && column == 1){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 }else if(row == 1 && column == 1){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 }else if(row == 1 && column == 0) {
-                    Assert.assertEquals("X",nextGeneration[row][column]);
-                } else Assert.assertNull(nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
+                } else assertThatCellIsDead(nextGeneration, row, column);
             }
         }
     }
@@ -82,7 +86,7 @@ public class GameOfLifeTest {
         Assert.assertArrayEquals(originalGrid, nextGeneration);
         for (int row = 0; row < nextGeneration.length; row++){
             for(int column = 0; column < nextGeneration.length; column++) {
-                Assert.assertNull(nextGeneration[row][column]);
+                assertThatCellIsDead(nextGeneration, row, column);
             }
         }
     }
@@ -98,16 +102,20 @@ public class GameOfLifeTest {
         for (int row = 0; row < nextGeneration.length; row++){
             for(int column = 0; column < nextGeneration.length; column++) {
                 if(row == 0 && column == 0){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 } else if(row == 0 && column == 1){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 }else if(row == 1 && column == 1){
-                    Assert.assertEquals("X",nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
                 }else if(row == 1 && column == 0) {
-                    Assert.assertEquals("X",nextGeneration[row][column]);
-                } else Assert.assertNull(nextGeneration[row][column]);
+                    assertThatCellIsLive(nextGeneration, row, column);
+                } else assertThatCellIsDead(nextGeneration, row, column);
             }
         }
+    }
+
+    private void assertThatCellIsLive(String[][] grid, int row, int column){
+        Assert.assertEquals("X",grid[row][column]);
     }
 
     private void giveLiveToCell(String[][] originalGrid, int row, int column) {
