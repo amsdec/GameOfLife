@@ -71,6 +71,20 @@ public class GameOfLifeTest {
         }
     }
 
+    @Test
+    public void nextGenerationOfOneLiveCellWithOneLiveNeighborMustDie() {
+        String[][] originalGrid = new String[10][10];
+        giveLiveToCell(originalGrid, 0, 0);
+        giveLiveToCell(originalGrid, 0, 1);
+        String[][] nextGeneration = game.nextGeneration(originalGrid);
+        Assert.assertArrayEquals(originalGrid, nextGeneration);
+        for (int row = 0; row < nextGeneration.length; row++){
+            for(int column = 0; column < nextGeneration.length; column++) {
+                Assert.assertNull(nextGeneration[row][column]);
+            }
+        }
+    }
+
     private void giveLiveToCell(String[][] originalGrid, int row, int column) {
         originalGrid[row][column] = "X";
     }
