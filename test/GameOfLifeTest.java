@@ -15,37 +15,31 @@ public class GameOfLifeTest {
 
     @Test
     public void nextGenerationOfOneLiveCellWithoutNeighborsMustDie() {
-        Cell[][] originalGrid = createCellsGrid();
+        CellsGrid originalGrid = createCellsGrid();
         giveLiveToCell(originalGrid, 0, 0);
-        Cell[][] nextGeneration = game.nextGeneration(originalGrid);
-        Assert.assertArrayEquals(originalGrid, nextGeneration);
-        for (int row = 0; row < nextGeneration.length; row++){
-            for(int column = 0; column < nextGeneration.length; column++) {
+        CellsGrid nextGeneration = game.nextGeneration(originalGrid);
+        assertThatTheSizeOfTheGridsAreTheSame(originalGrid, nextGeneration);
+        for (int row = 0; row < nextGeneration.getRowCount(); row++){
+            for(int column = 0; column < nextGeneration.getColumnCount(); column++) {
                 assertThatCellIsDead(nextGeneration, row, column);
             }
         }
     }
 
-    private Cell[][] createCellsGrid() {
-        Cell[][] grid = new Cell[10][10];
-        for(int row = 0; row < grid.length; row++){
-            for(int column = 0; column < grid.length; column++){
-                grid[row][column] = new Cell(false);
-            }
-        }
-        return grid;
+    private CellsGrid createCellsGrid() {
+        return new CellsGrid(10, 10);
     }
 
     @Test
     public void nextGenerationOfOneLiveCellWithTwoNeighborsMustLive() {
-        Cell[][] originalGrid = createCellsGrid();
+        CellsGrid originalGrid = createCellsGrid();
         giveLiveToCell(originalGrid, 0, 0);
         giveLiveToCell(originalGrid, 0, 1);
         giveLiveToCell(originalGrid, 1, 1);
-        Cell[][] nextGeneration = game.nextGeneration(originalGrid);
-        Assert.assertArrayEquals(originalGrid, nextGeneration);
-        for (int row = 0; row < nextGeneration.length; row++){
-            for(int column = 0; column < nextGeneration.length; column++) {
+        CellsGrid nextGeneration = game.nextGeneration(originalGrid);
+        assertThatTheSizeOfTheGridsAreTheSame(originalGrid, nextGeneration);
+        for (int row = 0; row < nextGeneration.getRowCount(); row++){
+            for(int column = 0; column < nextGeneration.getColumnCount(); column++) {
                 if(row == 0 && column == 0){
                     assertThatCellIsLive(nextGeneration, row, column);
                 } else if(row == 0 && column == 1){
@@ -59,21 +53,21 @@ public class GameOfLifeTest {
         }
     }
 
-    private void assertThatCellIsDead(Cell[][] grid, int row, int column) {
-        Assert.assertFalse("next generation of " + row + ", " + column + " must be dead", grid[row][column].isLive());
+    private void assertThatCellIsDead(CellsGrid grid, int row, int column) {
+        Assert.assertFalse("next generation of " + row + ", " + column + " must be dead", grid.getCellInPosition(row, column).isLive());
     }
 
     @Test
     public void nextGenerationOfOneLiveCellWithThreeNeighborsMustLive() {
-        Cell[][] originalGrid = createCellsGrid();
+        CellsGrid originalGrid = createCellsGrid();
         giveLiveToCell(originalGrid, 0, 0);
         giveLiveToCell(originalGrid, 0, 1);
         giveLiveToCell(originalGrid, 1, 1);
         giveLiveToCell(originalGrid, 1, 0);
-        Cell[][] nextGeneration = game.nextGeneration(originalGrid);
-        Assert.assertArrayEquals(originalGrid, nextGeneration);
-        for (int row = 0; row < nextGeneration.length; row++){
-            for(int column = 0; column < nextGeneration.length; column++) {
+        CellsGrid nextGeneration = game.nextGeneration(originalGrid);
+        assertThatTheSizeOfTheGridsAreTheSame(originalGrid, nextGeneration);
+        for (int row = 0; row < nextGeneration.getRowCount(); row++){
+            for(int column = 0; column < nextGeneration.getColumnCount(); column++) {
                 if(row == 0 && column == 0){
                     assertThatCellIsLive(nextGeneration, row, column);
                 } else if(row == 0 && column == 1){
@@ -89,13 +83,13 @@ public class GameOfLifeTest {
 
     @Test
     public void nextGenerationOfOneLiveCellWithOneLiveNeighborMustDie() {
-        Cell[][] originalGrid = createCellsGrid();
+        CellsGrid originalGrid = createCellsGrid();
         giveLiveToCell(originalGrid, 0, 0);
         giveLiveToCell(originalGrid, 0, 1);
-        Cell[][] nextGeneration = game.nextGeneration(originalGrid);
-        Assert.assertArrayEquals(originalGrid, nextGeneration);
-        for (int row = 0; row < nextGeneration.length; row++){
-            for(int column = 0; column < nextGeneration.length; column++) {
+        CellsGrid nextGeneration = game.nextGeneration(originalGrid);
+        assertThatTheSizeOfTheGridsAreTheSame(originalGrid, nextGeneration);
+        for (int row = 0; row < nextGeneration.getRowCount(); row++){
+            for(int column = 0; column < nextGeneration.getColumnCount(); column++) {
                 assertThatCellIsDead(nextGeneration, row, column);
             }
         }
@@ -103,14 +97,14 @@ public class GameOfLifeTest {
 
     @Test
     public void nextGenerationOfOneDeadCellWithThreeLiveNeighborMustLive() {
-        Cell[][] originalGrid = createCellsGrid();
+        CellsGrid originalGrid = createCellsGrid();
         giveLiveToCell(originalGrid, 0, 1);
         giveLiveToCell(originalGrid, 1, 1);
         giveLiveToCell(originalGrid, 1, 0);
-        Cell[][] nextGeneration = game.nextGeneration(originalGrid);
-        Assert.assertArrayEquals(originalGrid, nextGeneration);
-        for (int row = 0; row < nextGeneration.length; row++){
-            for(int column = 0; column < nextGeneration.length; column++) {
+        CellsGrid nextGeneration = game.nextGeneration(originalGrid);
+        assertThatTheSizeOfTheGridsAreTheSame(originalGrid, nextGeneration);
+        for (int row = 0; row < nextGeneration.getRowCount(); row++){
+            for(int column = 0; column < nextGeneration.getColumnCount(); column++) {
                 if(row == 0 && column == 0){
                     assertThatCellIsLive(nextGeneration, row, column);
                 } else if(row == 0 && column == 1){
@@ -124,11 +118,16 @@ public class GameOfLifeTest {
         }
     }
 
-    private void assertThatCellIsLive(Cell[][] grid, int row, int column){
-        Assert.assertTrue("Cell in " + row + ", " + column + " must be live", grid[row][column].isLive());
+    private void assertThatTheSizeOfTheGridsAreTheSame(CellsGrid originalGrid, CellsGrid nextGeneration) {
+        Assert.assertEquals(originalGrid.getRowCount(), nextGeneration.getRowCount());
+        Assert.assertEquals(originalGrid.getColumnCount(), nextGeneration.getColumnCount());
     }
 
-    private void giveLiveToCell(Cell[][] originalGrid, int row, int column) {
-        originalGrid[row][column].giveLive();
+    private void assertThatCellIsLive(CellsGrid grid, int row, int column){
+        Assert.assertTrue("Cell in " + row + ", " + column + " must be live", grid.getCellInPosition(row, column).isLive());
+    }
+
+    private void giveLiveToCell(CellsGrid originalGrid, int row, int column) {
+        originalGrid.getCellInPosition(row, column).giveLive();
     }
 }
