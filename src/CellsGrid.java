@@ -10,8 +10,12 @@ public class CellsGrid {
         this.rows = rows;
         this.columns = columns;
         this.grid = new Cell[rows][columns];
-        for(int row = 0; row < grid.length; row++){
-            for(int column = 0; column < grid.length; column++){
+        initializeGridAsDeadGrid();
+    }
+
+    private void initializeGridAsDeadGrid() {
+        for(int row = 0; row < rows; row++){
+            for(int column = 0; column < columns; column++){
                 grid[row][column] = new DeadCell();
             }
         }
