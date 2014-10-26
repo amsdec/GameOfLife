@@ -3,7 +3,7 @@
  */
 public class GameOfLife {
 
-    public String[][] nextGeneration(String[][] grid) {
+    public Cell[][] nextGeneration(Cell[][] grid) {
         for (int row = 0; row < grid.length; row++){
             for(int column = 0; column < grid.length; column++) {
                 if(isCellLive(grid, row, column)) {
@@ -20,24 +20,24 @@ public class GameOfLife {
         return grid;
     }
 
-    private void giveLiveToCell(String[][] grid, int row, int column) {
-        grid[row][column] = "X";
+    private void giveLiveToCell(Cell[][] grid, int row, int column) {
+        grid[row][column].giveLive();
     }
 
-    private boolean cellShouldBecomeLive(String[][] grid, int row, int column) {
+    private boolean cellShouldBecomeLive(Cell[][] grid, int row, int column) {
         return howManyLiveNeighborsTheCellHas(grid, row, column) == 3;
     }
 
-    private void killCell(String[][] grid, int row, int column) {
-        grid[row][column] = null;
+    private void killCell(Cell[][] grid, int row, int column) {
+        grid[row][column].kill();
     }
 
-    private boolean cellShouldDie(String[][] grid, int row, int column) {
+    private boolean cellShouldDie(Cell[][] grid, int row, int column) {
         int liveNeighborsCountOfCell = howManyLiveNeighborsTheCellHas(grid, row, column);
         return liveNeighborsCountOfCell < 2 || liveNeighborsCountOfCell > 3;
     }
 
-    private int howManyLiveNeighborsTheCellHas(String[][] grid, int row, int column) {
+    private int howManyLiveNeighborsTheCellHas(Cell[][] grid, int row, int column) {
         int liveNeighbors = 0;
         if(isThereAnUpperLeftNeighbor(row, column) && isUpperLeftNeighborLive(grid, row, column)){
             liveNeighbors++;
@@ -66,51 +66,51 @@ public class GameOfLife {
         return liveNeighbors;
     }
 
-    private boolean isLowerRightNeighborLive(String[][] grid, int row, int column) {
+    private boolean isLowerRightNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row + 1, column + 1);
     }
 
-    private boolean isRightNeighborLive(String[][] grid, int row, int column) {
+    private boolean isRightNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row, column+1);
     }
 
-    private boolean isUpperRightNeighborLive(String[][] grid, int row, int column) {
+    private boolean isUpperRightNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row - 1, column + 1);
     }
 
-    private boolean isLowerNeighborLive(String[][] grid, int row, int column) {
+    private boolean isLowerNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row+1, column);
     }
 
-    private boolean isUpperNeighborLive(String[][] grid, int row, int column) {
+    private boolean isUpperNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row-1, column);
     }
 
-    private boolean isLowerLeftNeighborLive(String[][] grid, int row, int column) {
+    private boolean isLowerLeftNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row + 1, column - 1);
     }
 
-    private boolean isLeftNeighborLive(String[][] grid, int row, int column) {
+    private boolean isLeftNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row, column-1);
     }
 
-    private boolean isUpperLeftNeighborLive(String[][] grid, int row, int column) {
+    private boolean isUpperLeftNeighborLive(Cell[][] grid, int row, int column) {
         return isCellLive(grid, row - 1, column - 1);
     }
 
-    private boolean isThereALowerRightNeighbor(String[][] grid, int row, int column) {
+    private boolean isThereALowerRightNeighbor(Cell[][] grid, int row, int column) {
         return row + 1 < grid.length && column + 1 < grid.length;
     }
 
-    private boolean isThereARightNeighbor(String[][] grid, int column) {
+    private boolean isThereARightNeighbor(Cell[][] grid, int column) {
         return column +1 < grid.length;
     }
 
-    private boolean isThereAnUpperRightNeighbor(String[][] grid, int row, int column) {
+    private boolean isThereAnUpperRightNeighbor(Cell[][] grid, int row, int column) {
         return row - 1 > -1 && column + 1 < grid.length;
     }
 
-    private boolean isThereALowerNeighbor(String[][] grid, int row) {
+    private boolean isThereALowerNeighbor(Cell[][] grid, int row) {
         return row +1 < grid.length;
     }
 
@@ -118,7 +118,7 @@ public class GameOfLife {
         return row -1 > -1;
     }
 
-    private boolean isThereALowerLeftNeighbor(String[][] grid, int row, int column) {
+    private boolean isThereALowerLeftNeighbor(Cell[][] grid, int row, int column) {
         return row + 1 < grid.length && column - 1 > -1;
     }
 
@@ -130,7 +130,7 @@ public class GameOfLife {
         return row - 1 > -1 && column - 1 > -1;
     }
 
-    private boolean isCellLive(String[][] grid, int row, int column) {
-        return grid[row][column] != null;
+    private boolean isCellLive(Cell[][] grid, int row, int column) {
+        return grid[row][column].isLive();
     }
 }
