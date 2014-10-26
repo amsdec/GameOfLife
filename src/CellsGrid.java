@@ -25,7 +25,19 @@ public class CellsGrid {
         return columns;
     }
 
-    public Cell getCellInPosition(int row, int column) {
+    private Cell getCellInPosition(int row, int column) {
         return grid[row][column];
+    }
+
+    public boolean isCellInPositionLive(int row, int column) {
+        return getCellInPosition(row, column).isLive();
+    }
+
+    public void killCellInPosition(int row, int column) {
+        getCellInPosition(row, column).kill();
+    }
+
+    public void giveLiveToCellInPosition(int row, int column) {
+        getCellInPosition(row, column).giveLive();
     }
 }

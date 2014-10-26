@@ -54,7 +54,7 @@ public class GameOfLifeTest {
     }
 
     private void assertThatCellIsDead(CellsGrid grid, int row, int column) {
-        Assert.assertFalse("next generation of " + row + ", " + column + " must be dead", grid.getCellInPosition(row, column).isLive());
+        Assert.assertFalse("next generation of " + row + ", " + column + " must be dead", grid.isCellInPositionLive(row, column));
     }
 
     @Test
@@ -124,10 +124,10 @@ public class GameOfLifeTest {
     }
 
     private void assertThatCellIsLive(CellsGrid grid, int row, int column){
-        Assert.assertTrue("Cell in " + row + ", " + column + " must be live", grid.getCellInPosition(row, column).isLive());
+        Assert.assertTrue("Cell in " + row + ", " + column + " must be live", grid.isCellInPositionLive(row, column));
     }
 
     private void giveLiveToCell(CellsGrid originalGrid, int row, int column) {
-        originalGrid.getCellInPosition(row, column).giveLive();
+        originalGrid.giveLiveToCellInPosition(row, column);
     }
 }

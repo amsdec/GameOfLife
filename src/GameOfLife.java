@@ -6,7 +6,7 @@ public class GameOfLife {
     public CellsGrid nextGeneration(CellsGrid grid) {
         for (int row = 0; row < grid.getRowCount(); row++){
             for(int column = 0; column < grid.getColumnCount(); column++) {
-                if(isCellLive(grid, row, column)) {
+                if(grid.isCellInPositionLive(row, column)) {
                     if(cellShouldDie(grid, row, column)) {
                         killCell(grid, row, column);
                     }
@@ -21,7 +21,7 @@ public class GameOfLife {
     }
 
     private void giveLiveToCell(CellsGrid grid, int row, int column) {
-        grid.getCellInPosition(row, column).giveLive();
+        grid.giveLiveToCellInPosition(row, column);
     }
 
     private boolean cellShouldBecomeLive(CellsGrid grid, int row, int column) {
@@ -29,7 +29,7 @@ public class GameOfLife {
     }
 
     private void killCell(CellsGrid grid, int row, int column) {
-        grid.getCellInPosition(row, column).kill();
+        grid.killCellInPosition(row, column);
     }
 
     private boolean cellShouldDie(CellsGrid grid, int row, int column) {
@@ -67,35 +67,35 @@ public class GameOfLife {
     }
 
     private boolean isLowerRightNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row + 1, column + 1);
+        return grid.isCellInPositionLive(row + 1, column + 1);
     }
 
     private boolean isRightNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row, column+1);
+        return grid.isCellInPositionLive(row, column+1);
     }
 
     private boolean isUpperRightNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row - 1, column + 1);
+        return grid.isCellInPositionLive(row - 1, column + 1);
     }
 
     private boolean isLowerNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row+1, column);
+        return grid.isCellInPositionLive(row+1, column);
     }
 
     private boolean isUpperNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row-1, column);
+        return grid.isCellInPositionLive(row-1, column);
     }
 
     private boolean isLowerLeftNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row + 1, column - 1);
+        return grid.isCellInPositionLive(row + 1, column - 1);
     }
 
     private boolean isLeftNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row, column-1);
+        return grid.isCellInPositionLive(row, column-1);
     }
 
     private boolean isUpperLeftNeighborLive(CellsGrid grid, int row, int column) {
-        return isCellLive(grid, row - 1, column - 1);
+        return grid.isCellInPositionLive(row - 1, column - 1);
     }
 
     private boolean isThereALowerRightNeighbor(CellsGrid grid, int row, int column) {
@@ -130,7 +130,4 @@ public class GameOfLife {
         return row - 1 > -1 && column - 1 > -1;
     }
 
-    private boolean isCellLive(CellsGrid grid, int row, int column) {
-        return grid.getCellInPosition(row, column).isLive();
-    }
 }
