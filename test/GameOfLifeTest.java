@@ -45,6 +45,21 @@ public class GameOfLifeTest {
         assertLiveSquare(game.nextGeneration(originalGrid));
     }
 
+    @Test
+    public void toStringOfGrid() {
+        Assert.assertEquals(
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          ", originalGrid.toString());
+    }
+
     private void assertThatTheSizeOfTheGridsAreTheSame(CellsGrid nextGeneration) {
         Assert.assertEquals(originalGrid.getRowCount(), nextGeneration.getRowCount());
         Assert.assertEquals(originalGrid.getColumnCount(), nextGeneration.getColumnCount());
