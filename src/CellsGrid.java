@@ -46,7 +46,11 @@ public class CellsGrid {
         StringBuilder printVersion = new StringBuilder();
         for(int x = 0; x < this.getRowCount(); x++) {
             for(int y = 0; y < this.getColumnCount(); y++) {
-                printVersion.append(grid[x][y].toString());
+                if(grid[x][y] instanceof LiveCell){
+                    printVersion.append("X");
+                } else {
+                    printVersion.append(grid[x][y].toString());
+                }
             }
             printVersion.append("\n");
         }
