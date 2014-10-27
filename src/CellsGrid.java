@@ -14,8 +14,8 @@ public class CellsGrid {
     }
 
     private void initializeGridAsDeadGrid() {
-        for(int row = 0; row < rows; row++){
-            for(int column = 0; column < columns; column++){
+        for (int row = 0; row < rows; row++) {
+            for (int column = 0; column < columns; column++) {
                 grid[row][column] = new DeadCell();
             }
         }

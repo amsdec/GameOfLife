@@ -4,14 +4,14 @@
 public class GameOfLife {
 
     public CellsGrid nextGeneration(CellsGrid grid) {
-        for (int row = 0; row < grid.getRowCount(); row++){
-            for(int column = 0; column < grid.getColumnCount(); column++) {
-                if(grid.isCellInPositionLive(row, column)) {
-                    if(cellShouldDie(grid, row, column)) {
+        for (int row = 0; row < grid.getRowCount(); row++) {
+            for (int column = 0; column < grid.getColumnCount(); column++) {
+                if (grid.isCellInPositionLive(row, column)) {
+                    if (cellShouldDie(grid, row, column)) {
                         grid.killCellInPosition(row, column);
                     }
                 } else {
-                    if(cellShouldBecomeLive(grid, row, column)) {
+                    if (cellShouldBecomeLive(grid, row, column)) {
                         grid.giveLiveToCellInPosition(row, column);
                     }
                 }
