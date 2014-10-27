@@ -46,11 +46,12 @@ public class GameOfLifeTest {
     }
 
     @Test
-    public void toStringOfGrid() {
+    public void toStringOfGridWithLiveCells() {
+        giveLiveToCells(new int[][]{{1, 1}, {1, 2}, {2, 1}, {2, 2}});
         Assert.assertEquals(
                 "          \n" +
-                "          \n" +
-                "          \n" +
+                " XX       \n" +
+                " XX       \n" +
                 "          \n" +
                 "          \n" +
                 "          \n" +
@@ -58,22 +59,6 @@ public class GameOfLifeTest {
                 "          \n" +
                 "          \n" +
                 "          ", originalGrid.toString());
-    }
-
-    @Test
-    public void toStringOfGridWithLiveCells() {
-        giveLiveToCells(new int[][]{{1, 1}, {1, 2}, {2, 1}, {2, 2}});
-        Assert.assertEquals(
-                "          \n" +
-                        " XX       \n" +
-                        " XX       \n" +
-                        "          \n" +
-                        "          \n" +
-                        "          \n" +
-                        "          \n" +
-                        "          \n" +
-                        "          \n" +
-                        "          ", originalGrid.toString());
     }
 
     private void assertThatTheSizeOfTheGridsAreTheSame(CellsGrid nextGeneration) {
