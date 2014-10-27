@@ -43,16 +43,17 @@ public class CellsGrid {
 
     @Override
     public String toString() {
-        return
-                "          \n" +
-                "          \n" +
-                "          \n" +
-                "          \n" +
-                "          \n" +
-                "          \n" +
-                "          \n" +
-                "          \n" +
-                "          \n" +
-                "          ";
+        StringBuilder printVersion = new StringBuilder();
+        for(int x = 0; x < this.getRowCount(); x++) {
+            for(int y = 0; y < this.getColumnCount(); y++) {
+                printVersion.append(grid[x][y].toString());
+            }
+            printVersion.append("\n");
+        }
+        return removeLastEndOfLine(printVersion);
+    }
+
+    private String removeLastEndOfLine(StringBuilder printVersion) {
+        return printVersion.toString().substring(0, printVersion.toString().length() -1);
     }
 }
