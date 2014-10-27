@@ -60,6 +60,22 @@ public class GameOfLifeTest {
                 "          ", originalGrid.toString());
     }
 
+    @Test
+    public void toStringOfGridWithLiveCells() {
+        giveLiveToCells(new int[][]{{1, 1}, {1, 2}, {2, 1}, {2, 2}});
+        Assert.assertEquals(
+                "          \n" +
+                        " XX       \n" +
+                        " XX       \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          ", originalGrid.toString());
+    }
+
     private void assertThatTheSizeOfTheGridsAreTheSame(CellsGrid nextGeneration) {
         Assert.assertEquals(originalGrid.getRowCount(), nextGeneration.getRowCount());
         Assert.assertEquals(originalGrid.getColumnCount(), nextGeneration.getColumnCount());
