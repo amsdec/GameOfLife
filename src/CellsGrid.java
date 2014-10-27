@@ -40,4 +40,19 @@ public class CellsGrid {
     public void giveLiveToCellInPosition(int row, int column) {
         grid[row][column] = new LiveCell();
     }
+
+    @Override
+    public String toString() {
+        return
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          ";
+    }
 }
