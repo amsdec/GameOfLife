@@ -61,6 +61,87 @@ public class GameOfLifeTest {
                 "          ", originalGrid.toString());
     }
 
+    @Test
+    public void blockPattern() {
+        giveLiveToCells(new int[][]{{1, 1}, {1, 2}, {2, 1}, {2, 2}});
+        Assert.assertEquals(
+                "          \n" +
+                        " XX       \n" +
+                        " XX       \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          \n" +
+                        "          ", game.nextGeneration(originalGrid).toString());
+    }
+
+
+    @Test
+    public void beeHivePattern() {
+        giveLiveToCells(new int[][]{{1, 2}, {1, 3}, {2, 1}, {2, 4},{3, 2},{3, 3}});
+        Assert.assertEquals(
+                "          \n" +
+                "  XX      \n" +
+                " X  X     \n" +
+                "  XX      \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          ", game.nextGeneration(originalGrid).toString());
+    }
+
+    @Test
+    public void loafPattern() {
+        giveLiveToCells(new int[][]{{1, 2}, {1, 3}, {2, 1}, {2, 4},{3, 2},{3, 4},{4, 3}});
+        Assert.assertEquals(
+                "          \n" +
+                "  XX      \n" +
+                " X  X     \n" +
+                "  X X     \n" +
+                "   X      \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          ", game.nextGeneration(originalGrid).toString());
+    }
+
+    @Test
+    public void boatPattern() {
+        giveLiveToCells(new int[][]{{1, 1}, {1, 2}, {2, 1}, {2, 3},{3, 2}});
+        Assert.assertEquals(
+                "          \n" +
+                " XX       \n" +
+                " X X      \n" +
+                "  X       \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          ", game.nextGeneration(originalGrid).toString());
+    }
+
+    @Test
+    public void blinkerPattern() {
+        giveLiveToCells(new int[][]{{2, 1}, {2, 2}, {2, 3}});
+        Assert.assertEquals(
+                "          \n" +
+                "  X       \n" +
+                "  X       \n" +
+                "  X       \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          \n" +
+                "          ", game.nextGeneration(originalGrid).toString());
+    }
+
     private void assertThatTheSizeOfTheGridsAreTheSame(CellsGrid nextGeneration) {
         Assert.assertEquals(originalGrid.getRowCount(), nextGeneration.getRowCount());
         Assert.assertEquals(originalGrid.getColumnCount(), nextGeneration.getColumnCount());
