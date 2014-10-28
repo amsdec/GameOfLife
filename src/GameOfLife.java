@@ -4,20 +4,23 @@
 public class GameOfLife {
 
     public CellsGrid nextGeneration(CellsGrid grid) {
+        CellsGrid newGeneration = new CellsGrid(grid.getRowCount(), grid.getColumnCount());
         for (int row = 0; row < grid.getRowCount(); row++) {
             for (int column = 0; column < grid.getColumnCount(); column++) {
                 if (grid.isCellInPositionLive(row, column)) {
                     if (cellShouldDie(grid, row, column)) {
-                        grid.killCellInPosition(row, column);
+                        newGeneration.killCellInPosition(row, column);
+                    } else {
+                        newGeneration.giveLiveToCellInPosition(row, column);
                     }
                 } else {
                     if (cellShouldBecomeLive(grid, row, column)) {
-                        grid.giveLiveToCellInPosition(row, column);
+                        newGeneration.giveLiveToCellInPosition(row, column);
                     }
                 }
             }
         }
-        return grid;
+        return newGeneration;
     }
 
     private boolean cellShouldBecomeLive(CellsGrid grid, int row, int column) {
